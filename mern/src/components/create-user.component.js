@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 import DatePicker from "react-datepicker"; //the calender way of selection
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -18,8 +19,8 @@ export default class CreateUsers extends Component {
 
     this.state = {
       rollno: "",
-      username: "",
       birthdate: new Date(),
+      username: "",
       contact: "",
       vaccinename: "none",
       vaccine1: false,
@@ -28,6 +29,7 @@ export default class CreateUsers extends Component {
       vac2disable: true,
       //   isChecked1:false,
       //   isChecked2:false,
+      error: "",
     };
   }
   onchangeUsername(event) {
@@ -86,8 +88,15 @@ export default class CreateUsers extends Component {
       vaccine1: this.state.vaccine1,
       vaccine2: this.state.vaccine2,
     };
+    console.log(user);
+    axios
+      .post("http://localhost:5000/users/add", user)
+      .then((res) => {
+        console.log(res);
+        window.location = "/";
+      })
+      .catch((err) => console.log(err.message));
     //as soon as we submit the exercise it will redirect the user to the main window
-    window.location = "/";
   }
   //   validate(){
 
@@ -96,7 +105,7 @@ export default class CreateUsers extends Component {
     return (
       <div>
         <h3>Create a New user</h3>
-        <form onSubmit={this.Submit}>
+        <form onSubmit={this.onSubmit}>
           <div className="form-group">
             <label>EnRollment Number</label>
             <input
@@ -123,7 +132,7 @@ export default class CreateUsers extends Component {
               <DatePicker
                 selected={this.state.birthdate}
                 onChange={this.onchangeDate}
-                onChangeRaw={this.handleDateChangeRaw}
+                // onChangeRaw={this.handleDateChangeRaw}
               />
             </div>
           </div>
@@ -140,7 +149,6 @@ export default class CreateUsers extends Component {
           <div className="form-group">
             <label>Vaccine Name</label>
             <select
-              ref="userInput"
               required
               className="form-control"
               value={this.state.vaccinename}
@@ -181,6 +189,9 @@ export default class CreateUsers extends Component {
             />
           </div>
         </form>
+        {/* <div>
+          <p>{this.state.error}</p>
+        </div> */}
       </div>
     );
   }

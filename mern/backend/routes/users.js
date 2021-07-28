@@ -27,38 +27,41 @@ router.route("/add").post((req, res) => {
   newUser
     .save()
     .then(() => res.json("user added"))
-    .catch((err) => res.status(400).json("error: " + err));
+    .catch((err) => {
+      console.log(err);
+      res.status(400).json(err);
+    });
 });
 //get a particular id
 router.route("/:id").get((req, res) => {
   User.findById(req.params.id)
-    .then((users) => res.json(users))
-    .catch((err) => res.status(400).json("Error:" + err));
+    .then((user) => res.json(user))
+    .catch((err) => res.status(400).json(err));
 });
 router.route("/:id").delete((req, res) => {
   User.findByIdAndDelete(req.params.id)
     .then(() => res.json("User deleted"))
-    .catch((err) => res.status(400).json("error: " + err));
+    .catch((err) => res.status(400).json(err));
 });
 
 //update
 router.route("/update/:id").post((req, res) => {
   User.findById(req.params.id)
-    .then((users) => {
-      users.rollno = req.body.rollno;
-      users.birthdate = Date.parse(req.body.birthdate);
-      users.username = req.body.username;
-      users.contact = req.body.contact;
-      users.vaccinename = req.body.vaccinename;
-      users.vaccine1 = req.body.vaccine1;
-      users.vaccine2 = req.body.vaccine2;
+    .then((user) => {
+      user.rollno = req.body.rollno;
+      user.birthdate = Date.parse(req.body.birthdate);
+      user.username = req.body.username;
+      user.contact = req.body.contact;
+      user.vaccinename = req.body.vaccinename;
+      user.vaccine1 = req.body.vaccine1;
+      user.vaccine2 = req.body.vaccine2;
 
-      users
+      user
         .save()
         .then(() => res.json("user updated"))
-        .catch((err) => res.status(400).json("error: " + err));
+        .catch((err) => res.status(400).json(err));
     })
-    .catch((err) => res.status(400).json("error: " + err));
+    .catch((err) => res.status(400).json(err));
 });
 
 module.exports = router;

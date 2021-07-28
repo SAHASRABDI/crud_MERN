@@ -21,6 +21,8 @@ const connection = mongoose.connection;
 connection.once("open", () => {
   console.log("Mongo db connection established");
 });
+//As the connection is opened it will console log
+//--------------------------------------------------
 
 const userRouter = require("./routes/users.js");
 app.use("/users", userRouter);
