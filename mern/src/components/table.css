@@ -1,0 +1,23 @@
+#table {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+.heading {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #5c5b5b;
+  color: white;
+}
+.elements {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+}
+.elements tr:hover {
+  background-color: #ddd;
+}
+.hovering:nth-child(even) {
+  background-color: #f2f2f2;
+}

@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import "./table.css";
 //import User from "./user.component";
 
 const User = (props) => (
-  <tr>
+  <tr className="hovering">
     <td>{props.user.rollno}</td>
     <td>{props.user.username}</td>
     <td>{props.user.birthdate.substring(0, 10)}</td>
@@ -70,7 +71,7 @@ export default class UserList extends Component {
       <div>
         <h3>Users List</h3>
         <table className="table">
-          <thread className="thread-light">
+          <thead className="heading">
             <tr>
               <th>Enrollment Number</th>
               <th>Username</th>
@@ -81,8 +82,8 @@ export default class UserList extends Component {
               <th>Dose 2</th>
               <th>Actions</th>
             </tr>
-          </thread>
-          <tbody>{this.usersList()}</tbody>
+          </thead>
+          <tbody className="elements">{this.usersList()}</tbody>
         </table>
       </div>
     );

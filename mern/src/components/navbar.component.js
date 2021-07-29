@@ -8,7 +8,7 @@ export default class Navbar extends Component {
         <Link to="/" className="navbar-brand">
           Vaccination History
         </Link>
-        <div className="collapse navbar-collapse">
+        <div className="navbar navbar-collapse">
           <ul className="navbar-nav mr auto">
             <li className="navbar-item">
               <Link to="/" className="nav-link">
