@@ -6,7 +6,7 @@ Need to do:
   
   2.add validation in frontend
   
-  #Technologies used-
+# Technologies used-
   1.ReactJs
   2.NodeJS
   3.MongoDb
